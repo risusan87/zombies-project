@@ -24,7 +24,8 @@
   </repositories>
 
   <dependencies>
-  
+
+    <!-- How tf to fix the conflict -->
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
@@ -46,7 +47,7 @@
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -56,12 +57,8 @@
                 <archive>
                     <manifest>
                         <mainClass>jp.kitsui87.hzp.HypixelZombiesProject</mainClass>
-                        <!-- Specify your main class -->
                     </manifest>
                 </archive>
-                <excludes>
-                    <!-- Exclude any files that should not be in the plugin JAR -->
-                </excludes>
             </configuration>
         </plugin>
       </plugins>
