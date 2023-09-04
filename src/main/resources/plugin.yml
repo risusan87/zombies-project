@@ -1,0 +1,9 @@
+name: ZombiesMinigame
+main: jp.kitsui87.hzp.HypixelZombiesProject
+version: 0.0.25
+depend: [ProtocolLib]
+commands:
+  hzp:
+    description: Zombies command
+    usage:
+    permission:
