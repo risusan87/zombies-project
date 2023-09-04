@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>jp.kitsui87</groupId>
+  <artifactId>zombies-minigame</artifactId>
+  <version>0.0.20-SNAPSHOT</version>
+  
+  <name>ZombiesMinigame</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>dmulloy2-repo</id>
+      <url>https://repo.dmulloy2.net/repository/public/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+  
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+      <version>1.12.2-R0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.bukkit</groupId>
+      <artifactId>craftbukkit</artifactId>
+      <version>1.12.2-R0.1-SNAPSHOT</version>
+    </dependency>
+  	
+  	<dependency>
+      <groupId>com.comphenix.protocol</groupId>
+      <artifactId>ProtocolLib</artifactId>
+      <version>4.7.0</version>
+    </dependency>
+  
+  </dependencies>
+
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>jp.kitsui87.hzp.HypixelZombiesProject</mainClass>
+                        <!-- Specify your main class -->
+                    </manifest>
+                </archive>
+                <excludes>
+                    <!-- Exclude any files that should not be in the plugin JAR -->
+                </excludes>
+            </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
