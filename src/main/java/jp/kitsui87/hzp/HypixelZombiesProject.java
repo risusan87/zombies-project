@@ -5,6 +5,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.logging.Level;
 
+import net.minecraft.server.v1_12_R1.EntityTypes;
+import net.minecraft.server.v1_12_R1.MinecraftKey;
+
 import org.bukkit.Server;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,6 +15,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+
 import jp.kitsui87.hzp.command.CommandHZP;
 import jp.kitsui87.hzp.entity.Corpse;
 import jp.kitsui87.hzp.entity.Zombie;
@@ -25,10 +29,6 @@ import jp.kitsui87.hzp.gamerule.ScoreboardRule;
 import jp.kitsui87.hzp.gamerule.VisibleBoard;
 import jp.kitsui87.hzp.gamerule.gun.GameTracker;
 import jp.kitsui87.hzp.gamerule.gun.GunRule;
-
-import net.minecraft.server.v1_12_R1.EntityTypes;
-import net.minecraft.server.v1_12_R1.MinecraftKey;
-
 
 /**
  * Spigot APIによるゾンビ再現プロジェクト。
