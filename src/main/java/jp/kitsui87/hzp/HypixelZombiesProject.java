@@ -54,9 +54,8 @@ public class HypixelZombiesProject extends JavaPlugin {
 		Listener gunlistener = new GameTracker();
 		this.getServer().getPluginManager().registerEvents(listener, this);
 		this.getServer().getPluginManager().registerEvents(gunlistener, this);
-		
-		Thread t = new Thread(() -> {
-			
+
+		Thread daemonJob = new Thread(() -> {
 			Server s = null;
 			do {
 				
@@ -80,7 +79,7 @@ public class HypixelZombiesProject extends JavaPlugin {
 				GameStateRule.getGameStateRule().switchGameState(GameState.PLAY);
 			});
 		});
-		t.start();
+		daemonJob.start();
 		
 		int id = 54;
 		MinecraftKey key = new MinecraftKey("zombiebasic");
@@ -111,8 +110,6 @@ public class HypixelZombiesProject extends JavaPlugin {
 		File dataFolder = this.getDataFolder();
 		if (!dataFolder.exists())
 			dataFolder.mkdirs();
-
-		plugin = this;
 	}
 	
 	/**
