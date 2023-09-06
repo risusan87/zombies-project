@@ -55,6 +55,7 @@ public class HypixelZombiesProject extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(listener, this);
 		this.getServer().getPluginManager().registerEvents(gunlistener, this);
 
+		plugin = this;
 		Thread daemonJob = new Thread(() -> {
 			Server s = null;
 			do {
