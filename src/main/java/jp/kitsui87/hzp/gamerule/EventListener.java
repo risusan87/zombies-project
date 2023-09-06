@@ -1,8 +1,16 @@
 package jp.kitsui87.hzp.gamerule;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -35,10 +43,12 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.util.Vector;
 
+import jp.kitsui87.hzp.HypixelZombiesProject;
 import jp.kitsui87.hzp.entity.Corpse;
 import jp.kitsui87.hzp.entity.Zombie;
 import jp.kitsui87.hzp.gamerule.GameStateRule.GameProfile;
 import jp.kitsui87.hzp.gamerule.GameStateRule.PlayerState;
+import jp.kitsui87.hzp.util.Script;
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import net.minecraft.server.v1_12_R1.EntityZombie;
 import net.minecraft.server.v1_12_R1.WorldServer;
@@ -48,8 +58,9 @@ public class EventListener implements Listener {
 
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
-		Player p = event.getPlayer();
 		
+		
+		Player p = event.getPlayer();
 		if (
 			event.getAction() == Action.RIGHT_CLICK_AIR && 
 			event.getHand() == EquipmentSlot.HAND &&
@@ -71,6 +82,30 @@ public class EventListener implements Listener {
 		    attribute.setBaseValue(24f);
 		    p.saveData();
 		}
+
+		ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
+		ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("javascript");
+		//scriptEngine.getBindings(javax.script.ScriptContext.ENGINE_SCOPE).clear();
+		try {
+			scriptEngine.put("__javaImpScriptObj_", event);
+			try (
+				FileReader fr = new FileReader(new File(HypixelZombiesProject.getPlugin().getDataFolder(), "test.js"));
+				BufferedReader br = new BufferedReader(fr);
+			) {
+				StringBuilder sb = new StringBuilder();
+				String line;
+				while ((line = br.readLine()) != null)
+					sb.append(line);
+				scriptEngine.eval(sb.toString());
+			} catch (IOException e) {
+				scriptEngine.eval("function onInteract(event) {};");
+				e.printStackTrace();
+			}
+			scriptEngine.eval("onInteract(__javaImpScriptObj_);");
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	@EventHandler
