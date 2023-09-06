@@ -4,6 +4,7 @@ import jp.kitsui87.hzp.HypixelZombiesProject;
 import jp.kitsui87.hzp.gamerule.PermissionRule;
 import jp.kitsui87.hzp.util.ActionBarConstructor;
 import jp.kitsui87.hzp.util.ChatJsonBuilder;
+import jp.kitsui87.hzp.util.Script;
 import net.minecraft.server.v1_12_R1.Item;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
@@ -207,13 +208,10 @@ public abstract class GunBase {
 		ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
 		ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("javascript");
 		try {
-			String javascriptCode = "function greet(name) { return 'Hello, ' + name; }";
-			scriptEngine.eval(javascriptCode);
-		
-			String functionName = "greet";
-			String name = "John";
-			String result = (String) scriptEngine.eval(functionName + "('" + name + "')");
-			System.out.println("JavaScript Result: " + result);
+			Script script = new Script();
+			scriptEngine.put("__javaImpScriptObj_", script);
+			scriptEngine.eval("function greet(script) { script.hi(); }");
+			scriptEngine.eval("greet(__javaImpScriptObj_);");
 		} catch (ScriptException e) {
 			e.printStackTrace();
 		}
